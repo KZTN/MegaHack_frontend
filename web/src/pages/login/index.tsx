@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 
 import './styles.css'
 import SignIn from '../../components/signin'
-import SignUp from './signup'
+import SignUp from '../../components/signup'
 
 const UserLogin = () => {
   const [loginAction, setLoginAction] = useState(true);

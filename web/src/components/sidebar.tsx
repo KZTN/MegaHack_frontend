@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
-import { FaUserAlt, FaHome, FaRegStar, FaShoppingCart, FaRegFileAlt } from 'react-icons/fa'
+import { FaHome, FaRegStar, FaShoppingCart, FaRegFileAlt } from 'react-icons/fa'
 
 const SideBar = () => {
 
@@ -9,7 +9,7 @@ const SideBar = () => {
       <div className="menu-wrapper">
         <div className="links-wrapper">
           <Link to="/profile">
-            <FaUserAlt size={32}/>
+            <img src={require("../assets/user-profile.jpg")} alt="olar" className="img-menu" />
             <div className="profile-link">
               <strong>[Nome]</strong>
               <small>Ver Perfil</small>

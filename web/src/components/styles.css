@@ -6,31 +6,7 @@ html {
   --searchbar-color: #FF9A5C;
 }
 
-.base-container {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.header {
-  flex-direction: column;
-  margin-top: 2em;
-}
-
-.header button {
-  border-color: transparent;
-  background-color: transparent;
-  font-size: 21px;
-  padding-left: 1.5em;
-  padding-right: 1.5em;
-  padding-bottom: 0.5em;
-}
-
-.header button:focus{
-  outline:none;
-  border-bottom-color: black;
-}
+/* Formulários */
 
 .form {
   margin-top: 2em;
@@ -131,6 +107,14 @@ html {
   display: flex;
   flex-direction: column;
   padding-left: 5px;
+}
+
+.img-menu{
+  width: 50px;
+  height: 50px;
+  background-size: cover;
+  display: block;
+  border-radius: 100px;
 }
 
 /* SearchBar */
