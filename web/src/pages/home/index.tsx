@@ -19,8 +19,6 @@ const Home = () => {
   const [posts, setPosts] = useState<Post[]>([])
 
   useEffect(() => {
-    localStorage.setItem("id", "5efe4993edbf718fe201a5f9")
-
     api.get("posts").then(response => {
       setPosts(response.data);
     });
