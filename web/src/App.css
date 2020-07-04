@@ -1,8 +1,14 @@
-html {
-  --button-color: #75A3D1;
-  --button-color-hover: #538cc6; 
-  --menu-color: #B1434E;
-  --input-color: #d9d9d9;
-  --searchbar-color: #FF9A5C;
+* {
+  margin: 0;
+  padding: 0;
+  outline: 0;
+  box-sizing: border-box;
 }
 
+html {
+  --button-color: #75a3d1;
+  --button-color-hover: #538cc6;
+  --menu-color: #b1434e;
+  --input-color: #d9d9d9;
+  --searchbar-color: #ff9a5c;
+}
