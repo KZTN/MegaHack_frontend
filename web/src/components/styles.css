@@ -1,24 +1,27 @@
 html {
-  --button-color: #75A3D1;
-  --button-color-hover: #538cc6; 
-  --menu-color: #B1434E;
+  --button-color: #75a3d1;
+  --button-color-hover: #538cc6;
+  --menu-color: #b1434e;
   --menu-color-hover: #943841;
   --input-color: #d9d9d9;
-  --searchbar-color: #FF9A5C;
+  --searchbar-color: #ff9a5c;
 }
 
 /* Formulários */
 
-.form {
+.form form {
   margin-top: 2em;
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 0.0625rem 0.125rem 0 rgba(0, 0, 0, 0.15);
 }
 
 .form input {
   margin-top: 6px;
-  min-width: 18em;
+  width: 18em;
   height: 37px;
   padding: 0px 10px;
   font-size: 16px;
@@ -104,7 +107,8 @@ html {
   background-color: var(--menu-color-hover);
 }
 
-.links-wrapper a label, small {
+.links-wrapper a label,
+small {
   margin-left: 10px;
 }
 
@@ -114,7 +118,7 @@ html {
   padding-left: 5px;
 }
 
-.img-menu{
+.img-menu {
   width: 50px;
   height: 50px;
   background-size: cover;
