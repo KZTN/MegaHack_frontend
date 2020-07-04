@@ -1,0 +1,40 @@
+.area {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 5em;
+  padding-bottom: 1em;
+}
+
+.img-container {
+  width: 200px;
+  height: 200px;
+  background-size: cover;
+  display: block;
+}
+
+.post-container {
+  display: flex;
+  flex-direction: column;
+  margin-left: 25px;
+  margin-bottom: 25px;
+}
+
+.post-container img:hover {
+  width: 210px;
+  height: 210px;
+}
+
+.area a {
+  color: #000;
+  text-decoration: none;
+}
+
+.post-row{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}

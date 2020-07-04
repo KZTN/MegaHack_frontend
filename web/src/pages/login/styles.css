@@ -1,3 +1,9 @@
+html {
+  --button-color: #75A3D1;
+  --button-color-hover: #538cc6;  
+  --input-color: #d9d9d9;
+}
+
 .base-container {
   width: 100%;
   display: flex;
@@ -7,7 +13,6 @@
 
 .header {
   flex-direction: column;
-  font-family: "Open Sans", sans-serif;
   margin-top: 2em;
 }
 
@@ -38,15 +43,14 @@
   height: 37px;
   padding: 0px 10px;
   font-size: 16px;
-  font-family: "Open Sans", sans-serif;
-  background-color: #f3f3f3;
+  background-color: var(--input-color);
   border: 0;
   border-radius: 4px;
   transition: all 250ms ease-in-out;
 }
 
 .form input:hover {
-  background-color: #ffffff;
+  background-color: var(--input-color);
   box-shadow: 0px 0px 14px 0.3px #0e81ce96;
 }
 
@@ -67,7 +71,7 @@
 .footer button {
   font-size: 21px;
   border: 0;
-  background-color: #3498db;
+  background-color: var(--button-color);
   color: #fff;
   border-radius: 3px;
   transition: all 250ms ease-in-out;
@@ -76,7 +80,7 @@
 }
 
 .footer button:hover {
-  background-color: #2386c8;
+  background-color: var(--button-color-hover);
 }
 
 .footer button:focus {

@@ -1,12 +1,11 @@
 import React, { useState } from 'react'
 
 import './styles.css'
-
-import SignIn from './signin'
+import SignIn from '../../components/signin'
 import SignUp from './signup'
 
-const Login = () => {
-  const [loginAction, setLoginAction] = useState<boolean>(true);
+const UserLogin = () => {
+  const [loginAction, setLoginAction] = useState(true);
 
   function handleActionButton(isLogin: boolean) {
     setLoginAction(isLogin)
@@ -27,4 +26,4 @@ const Login = () => {
   )
 }
 
-export default Login;
+export default UserLogin;

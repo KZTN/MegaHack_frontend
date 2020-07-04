@@ -3,6 +3,10 @@ import React, { useState } from 'react'
 import './styles.css'
 
 const SignIn = () => {
+  function goToHome() {
+
+  }
+  
   return (
     <div className="content">
       <div className="form">
@@ -10,7 +14,7 @@ const SignIn = () => {
         <input type="password" name="password" placeholder="Senha" />
 
         <div className="footer">
-          <button>Entrar</button>
+          <button onClick={goToHome}>Entrar</button>
         </div>
       </div>
     </div>
