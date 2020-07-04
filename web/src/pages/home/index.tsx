@@ -1,13 +1,31 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import ScrollArea from 'react-scrollbar'
 import { Link } from 'react-router-dom';
+import api from '../../services/api';
 
 import './styles.css'
 
 import SiderBar from '../../components/sidebar'
 import SearchBar from '../../components/searchbar'
 
+interface Post {
+  _id: string;
+  title: string;
+  price: number;
+  thumbnail: string;
+}
+
 const Home = () => {
+  const [posts, setPosts] = useState<Post[]>([])
+
+  useEffect(() => {
+    localStorage.setItem("id", "5efe4993edbf718fe201a5f9")
+
+    api.get("posts").then(response => {
+      setPosts(response.data);
+    });
+  }, []);
+
   return (
     <div>
       <ScrollArea
@@ -16,28 +34,14 @@ const Home = () => {
         contentClassName="content"
         vertical={true}
       >
-        {[...Array(10)].map((x, i) => (
-          <div className="post-row">
-            <Link to={`/food/${i}`}>
-              <div id="i" className="post-container">
-                <img src={require("../../assets/food-feed.jpg")} alt="" className="img-container" />
-                <strong>R$ 8,00</strong>
-                <small>Empada de frango cremoso</small>
+        {posts.map(post => (
+            <Link id={post._id} to={`/food/${post._id}`}>
+              <div className="post-container">
+                <img src={post.thumbnail} alt="" className="img-container" />
+                <strong>R${post.price}</strong>
+                <small>{post.title}</small>
               </div>
             </Link>
-
-            <div className="post-container">
-              <img src={require("../../assets/food-feed.jpg")} alt="" className="img-container" />
-              <strong>R$ 8,00</strong>
-              <small>Empada de frango cremoso</small>
-            </div>
-
-            <div className="post-container">
-              <img src={require("../../assets/food-feed.jpg")} alt="" className="img-container" />
-              <strong>R$ 8,00</strong>
-              <small>Empada de frango cremoso</small>
-            </div>
-          </div>
         ))}
       </ScrollArea>
 

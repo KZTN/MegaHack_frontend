@@ -1,34 +1,48 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
 import { FaHome, FaRegStar, FaShoppingCart, FaRegFileAlt } from 'react-icons/fa'
+import api from '../services/api';
+
+interface User {
+  name: string;
+  thumbnail: string;
+}
 
 const SideBar = () => {
+  const [user, setUser] = useState<User>()
+
+  useEffect(() => {
+    api.get(`users/${localStorage.getItem("id")}`).then(response => {
+      setUser(response.data);
+      console.log(user)
+    });
+  }, []);
 
   return (
     <>
       <div className="menu-wrapper">
         <div className="links-wrapper">
           <Link to="/profile">
-            <img src={require("../assets/user-profile.jpg")} alt="olar" className="img-menu" />
+            <img src={user?.thumbnail} alt="olar" className="img-menu" />
             <div className="profile-link">
-              <strong>[Nome]</strong>
+              <small>{user?.name}</small>
               <small>Ver Perfil</small>
             </div>
           </Link>
           <Link to="/home">
-            <FaHome size={20}/>
+            <FaHome size={20} />
             <label>Navegar</label>
           </Link>
           <Link to="/favorite">
-            <FaRegStar size={20}/>
+            <FaRegStar size={20} />
             <label>Favoritos</label>
           </Link>
           <Link to="/">
-            <FaShoppingCart size={20}/>
+            <FaShoppingCart size={20} />
             <label>Pedidos</label>
           </Link>
           <Link to="/">
-            <FaRegFileAlt size={20}/>
+            <FaRegFileAlt size={20} />
             <label>Histórico</label>
           </Link>
         </div>
