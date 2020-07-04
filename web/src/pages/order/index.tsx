@@ -16,7 +16,6 @@ interface Order {
 const Order = () => {
   const [user, setUser] = useState<User>()
   const [listOrders, setListOrders] = useState<Order[]>([])
-  const [orderid, setOrderid] = useState<string>()
 
   useEffect(() => {
     api.get(`users/${localStorage.getItem("id")}`).then(response => {
@@ -24,18 +23,20 @@ const Order = () => {
     });
   }, []);
 
+  async function getOrders(id: string) {
+    await api.get(`orders/${id}`).then(response => {
+      listOrders.push(response.data)
+    })
+    // aqui o lenght é 1
+    console.log(listOrders.length)
+  }
+
   useEffect(() => {
-    let list = [] as Order[]
-
     user?.orders.map(o => (
-      api.get(`orders/${o.order._id}`).then(response => {
-        setOrderid(response.data.state)
-        list.push(response.data)
-      })
+      getOrders(o.order._id)
     ))
-
-    setListOrders(list)
-    console.log(list.length)
+      // aqui o lenght é 0
+    console.log(listOrders.length)
   }, [user]);
 
   return (
