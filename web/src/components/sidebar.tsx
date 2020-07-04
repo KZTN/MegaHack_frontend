@@ -4,8 +4,8 @@ import { FaHome, FaRegStar, FaShoppingCart, FaRegFileAlt, FaDoorOpen } from 'rea
 import api from '../services/api';
 
 interface User {
-  name: string;
-  thumbnail: string;
+  name: string
+  thumbnail: string
 }
 
 const SideBar = () => {
@@ -14,7 +14,6 @@ const SideBar = () => {
   useEffect(() => {
     api.get(`users/${localStorage.getItem("id")}`).then(response => {
       setUser(response.data);
-      console.log(user)
     });
   }, []);
 
@@ -37,11 +36,11 @@ const SideBar = () => {
             <FaHome size={20} />
             <label>Navegar</label>
           </Link>
-          <Link to="/favorite">
+          <Link to="/favorites">
             <FaRegStar size={20} />
             <label>Favoritos</label>
           </Link>
-          <Link to="/">
+          <Link to="/orders">
             <FaShoppingCart size={20} />
             <label>Pedidos</label>
           </Link>

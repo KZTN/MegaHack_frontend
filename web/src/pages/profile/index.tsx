@@ -19,7 +19,6 @@ const Profile = () => {
   useEffect(() => {
     api.get(`users/${localStorage.getItem("id")}`).then(response => {
       setUser(response.data);
-      console.log(user)
     });
   }, []);
 

@@ -9,10 +9,10 @@ import SiderBar from '../../components/sidebar'
 import SearchBar from '../../components/searchbar'
 
 interface Post {
-  _id: string;
-  title: string;
-  price: number;
-  thumbnail: string;
+  _id: string
+  title: string
+  price: number
+  thumbnail: string
 }
 
 const Home = () => {
