@@ -1,29 +1,34 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import {
-  FaHome,
-  FaRegStar,
-  FaShoppingCart,
-  FaRegFileAlt,
-  FaDoorOpen,
-} from "react-icons/fa";
+import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom';
+import { FaHome, FaRegStar, FaShoppingCart, FaRegFileAlt, FaDoorOpen } from 'react-icons/fa'
+import api from '../services/api';
+
+interface User {
+  name: string
+  thumbnail: string
+}
 
 const SideBar = () => {
+  const [user, setUser] = useState<User>()
+
+  useEffect(() => {
+    api.get(`users/${localStorage.getItem("id")}`).then(response => {
+      setUser(response.data);
+    });
+  }, []);
+
   function handleLogout() {
     localStorage.removeItem("id");
   }
+  
   return (
     <>
       <div className="menu-wrapper">
         <div className="links-wrapper">
           <Link to="/profile">
-            <img
-              src={require("../assets/user-profile.jpg")}
-              alt="olar"
-              className="img-menu"
-            />
+            <img src={user?.thumbnail} alt="olar" className="img-menu" />
             <div className="profile-link">
-              <strong>[Nome]</strong>
+              <small>{user?.name}</small>
               <small>Ver Perfil</small>
             </div>
           </Link>
@@ -31,11 +36,11 @@ const SideBar = () => {
             <FaHome size={20} />
             <label>Navegar</label>
           </Link>
-          <Link to="/favorite">
+          <Link to="/favorites">
             <FaRegStar size={20} />
             <label>Favoritos</label>
           </Link>
-          <Link to="/">
+          <Link to="/orders">
             <FaShoppingCart size={20} />
             <label>Pedidos</label>
           </Link>

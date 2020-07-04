@@ -5,7 +5,7 @@ import Initial from "./pages/initial";
 import Login from "./pages/login";
 import Home from "./pages/home";
 import Profile from "./pages/profile";
-import Favorite from "./pages/favorite";
+import Favorites from "./pages/favorites";
 
 const Routes = () => {
   return (
@@ -14,7 +14,7 @@ const Routes = () => {
       <Route component={Login} path="/login" />
       <Route component={Home} path="/home" />
       <Route component={Profile} path="/profile" />
-      <Route component={Favorite} path="/favorite" />
+      <Route component={Favorites} path="/favorites" />
     </BrowserRouter>
   );
 };
