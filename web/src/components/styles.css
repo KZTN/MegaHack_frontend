@@ -2,6 +2,7 @@ html {
   --button-color: #75A3D1;
   --button-color-hover: #538cc6; 
   --menu-color: #B1434E;
+  --menu-color-hover: #943841;
   --input-color: #d9d9d9;
   --searchbar-color: #FF9A5C;
 }
@@ -100,7 +101,11 @@ html {
 }
 
 .links-wrapper a:hover {
-  background-color: darken(#2e2e2e, 10%);
+  background-color: var(--menu-color-hover);
+}
+
+.links-wrapper a label, small {
+  margin-left: 10px;
 }
 
 .profile-link {

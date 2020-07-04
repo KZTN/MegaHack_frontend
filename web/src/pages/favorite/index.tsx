@@ -18,7 +18,7 @@ const Favorite = () => {
       >
         {
           [...Array(10)].map((x, i) => (
-            <Link to="/user/i">
+            <Link to={`/user/${i}`}>
               <div className="favorite-container">
                 <img src={require("../../assets/user-profile.jpg")} alt="" className="img-favorite" />
                 <div className="description">

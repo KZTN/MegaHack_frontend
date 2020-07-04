@@ -18,7 +18,7 @@ const Home = () => {
       >
         {[...Array(10)].map((x, i) => (
           <div className="post-row">
-            <Link to="/food/i">
+            <Link to={`/food/${i}`}>
               <div id="i" className="post-container">
                 <img src={require("../../assets/food-feed.jpg")} alt="" className="img-container" />
                 <strong>R$ 8,00</strong>

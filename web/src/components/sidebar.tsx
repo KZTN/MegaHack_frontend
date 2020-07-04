@@ -16,20 +16,20 @@ const SideBar = () => {
             </div>
           </Link>
           <Link to="/home">
-            <FaHome />
-            Navegar
+            <FaHome size={20}/>
+            <label>Navegar</label>
           </Link>
           <Link to="/favorite">
-            <FaRegStar />
-            Favoritos
+            <FaRegStar size={20}/>
+            <label>Favoritos</label>
           </Link>
           <Link to="/">
-            <FaShoppingCart />
-            Pedidos
+            <FaShoppingCart size={20}/>
+            <label>Pedidos</label>
           </Link>
           <Link to="/">
-            <FaRegFileAlt />
-            Histórico
+            <FaRegFileAlt size={20}/>
+            <label>Histórico</label>
           </Link>
         </div>
       </div>

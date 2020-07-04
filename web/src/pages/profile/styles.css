@@ -9,37 +9,32 @@ html {
 }
 
 .form-row {
-  width: 100%;
+  width: 300px;
   display: flex;
-  justify-content: center;
-  align-items: center;
   flex-direction: row;
   margin-top: 15px;
 }
 
 .form-component {
+  width: 100%;
   display: flex;
-  justify-content: center;
   align-items: flex-start;
   flex-direction: column;
-  margin-left: 15px;
 }
 
 .form-component input {
   height: 30px;
-  padding: 0px 10px;
   background-color: var(--input-color);
   border: 0;
   border-radius: 4px;
-  transition: all 250ms ease-in-out;
 }
 
-.form input:hover {
+.form-component input:hover {
   background-color: var(--input-color);
   box-shadow: 0px 0px 14px 0.3px #0e81ce96;
 }
 
-.form input:focus {
+.form-component input:focus {
   outline: none;
   box-shadow: 0px 0px 12px 0.8px #3474dbb2;
 }
