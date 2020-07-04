@@ -1,8 +1,15 @@
 import React, { useState } from 'react'
+import { useHistory } from 'react-router-dom'
 
 import './styles.css'
 
 const SignUp = () => {
+  const history = useHistory()
+
+  function goToHome() {
+    history.push('/home')
+  }
+
   return (
     <div className="content">
       <div className="form">
@@ -14,7 +21,7 @@ const SignUp = () => {
         <input type="password" name="password" placeholder="Senha" />
 
         <div className="footer">
-          <button>Cadastrar</button>
+          <button onClick={goToHome}>Cadastrar</button>
         </div>
       </div>
     </div>

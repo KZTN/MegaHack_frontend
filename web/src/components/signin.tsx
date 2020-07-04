@@ -1,10 +1,13 @@
 import React, { useState } from 'react'
+import { useHistory } from 'react-router-dom'
 
 import './styles.css'
 
 const SignIn = () => {
-  function goToHome() {
+  const history = useHistory()
 
+  function goToHome() {
+    history.push('/home')
   }
 
   return (
