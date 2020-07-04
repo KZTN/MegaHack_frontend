@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
-import { FaHome, FaRegStar, FaShoppingCart, FaRegFileAlt } from 'react-icons/fa'
+import { FaHome, FaRegStar, FaShoppingCart, FaRegFileAlt, FaDoorOpen } from 'react-icons/fa'
 import api from '../services/api';
 
 interface User {
@@ -18,6 +18,10 @@ const SideBar = () => {
     });
   }, []);
 
+  function handleLogout() {
+    localStorage.removeItem("id");
+  }
+  
   return (
     <>
       <div className="menu-wrapper">
@@ -45,10 +49,14 @@ const SideBar = () => {
             <FaRegFileAlt size={20} />
             <label>Histórico</label>
           </Link>
+          <Link to="/" onClick={handleLogout}>
+            <FaDoorOpen size={20} />
+            <label>Sair</label>
+          </Link>
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
 export default SideBar;
