@@ -53,15 +53,27 @@ const Home = () => {
   const [favorites, setFavorites] = useState<PostFAvorite[]>([]);
 
   useEffect(() => {
-    api.get("posts").then((response) => {
-      setPosts(response.data);
-
-      response.data.map((p: Post) => {
-        let favorite = { id: p._id, isFavorite: false };
-        favorites.push(favorite);
-        console.log(favorites);
+    if (localStorage.getItem("field")) {
+      api.get(`search/${localStorage.getItem("field")}`).then((response) => {
+        setPosts(response.data);
+        localStorage.removeItem("field");
+        response.data.map((p: Post) => {
+          let favorite = { id: p._id, isFavorite: false };
+          favorites.push(favorite);
+          console.log(favorites);
+        });
       });
-    });
+    } else {
+      api.get("posts").then((response) => {
+        setPosts(response.data);
+
+        response.data.map((p: Post) => {
+          let favorite = { id: p._id, isFavorite: false };
+          favorites.push(favorite);
+          console.log(favorites);
+        });
+      });
+    }
   }, [favorites]);
 
   async function handleFavorite(id: string) {
@@ -86,6 +98,7 @@ const Home = () => {
                 src={post.thumbnail}
                 alt={post.title}
                 className="img-container"
+                style={{ objectFit: "cover", width: "100%" }}
               />
               <GridListTileBar
                 title={<strong>{post.establishment.name}</strong>}

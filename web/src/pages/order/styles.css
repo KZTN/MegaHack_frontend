@@ -28,9 +28,9 @@
 }
 
 .wrapper-favorites .wrapper-item .item-thumbnail img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .wrapper-favorites .wrapper-item .wrapper-body {
@@ -40,10 +40,7 @@
   flex-direction: column;
 }
 
-.wrapper-favorites
-  .wrapper-item
-  .wrapper-body
-  .wrapper-header {
+.wrapper-favorites .wrapper-item .wrapper-body .wrapper-header {
   width: 100%;
   display: flex;
   flex-direction: column;

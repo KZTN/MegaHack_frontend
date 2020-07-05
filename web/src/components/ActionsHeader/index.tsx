@@ -1,14 +1,14 @@
 import React from "react";
 import "./styles.scss";
 import { Link } from "react-router-dom";
-
+import logo from "../../assets/logo.png";
 export default function ActionsHeader() {
   return (
     <header className="actionsheader">
       <div className="upper-header">
         <div className="box-logo">
           <Link to="/">
-            <h3>XXXX</h3>
+            <img src={logo} alt="logo" />
           </Link>
         </div>
         <div className="header-element">
