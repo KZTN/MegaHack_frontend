@@ -132,14 +132,40 @@ small {
   position: fixed;
   width: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   padding-top: 1em;
   padding-bottom: 1em;
   background-color: var(--searchbar-color);
   top: 0;
 }
+.search-container form {
+  margin-right: 200px;
 
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  padding: 0.2rem;
+}
+.search-container img {
+  width: 48px;
+}
+.search-container img:first-child {
+  margin-left: 330px;
+}
+.search-container img:last-child {
+  margin-right: 20px;
+}
+.search-container form input {
+  background: none;
+  font-size: 18px;
+  color: #333;
+  width: 100px;
+}
+.search-container form button {
+  background: none;
+  border: 0;
+  margin-right: 20px;
+}
 .post-container {
   position: fixed;
   width: 100%;

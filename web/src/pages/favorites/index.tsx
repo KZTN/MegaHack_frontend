@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
-
+import logo from "../../assets/logo.png";
 import api from "../../services/api";
 import Modal from "../../components/Modal";
 import SideBar from "../../components/sidebar";
@@ -66,7 +66,7 @@ export default function Favorites() {
           <div className="content">
             <div className="header">
               <div className="wrapper">
-                <h1>xxx</h1>
+                <img src={logo} alt="logo" />
                 <span>contato</span>
               </div>
               <div className="wrapper-actions">
