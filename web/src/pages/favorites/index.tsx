@@ -66,15 +66,8 @@ export default function Favorites() {
         <section id="favorites">
           <div className="content">
             <div className="header">
- 
-              <div className="wrapper-actions">
-                <Link to="/home">Ver postagens mais recentes</Link>
-                <Link to="/profile">Ver perfil</Link>
-              </div>
+
             </div>
-            <header>
-              <h1>Seus estabelecimentos favoritos</h1>
-            </header>
             <div className="wrapper-favorites">
               {favorites.map((favitem: any) => (
                 <div
@@ -102,7 +95,7 @@ export default function Favorites() {
           </div>
         </section>
       ) : null}
-      <TitleBar title="Notificações" />
+      <TitleBar title="Favoritos" />
       <SideBar />
     </div>
   );

@@ -16,7 +16,6 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       height: "100%",
-      paddingTop: "150px",
       flexGrow: 1,
       marginTop: '6em'
     },
