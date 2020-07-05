@@ -104,14 +104,17 @@ const Login = () => {
   const history = useHistory();
 
   function goToUserLogin() {
+    localStorage.setItem("usertype", "0")
     history.push("/login");
   }
 
   function goToEstabLogin() {
+    localStorage.setItem("usertype", "1")
     history.push("/login");
   }
 
   function goToDeliveryLogin() {
+    localStorage.setItem("usertype", "2")
     history.push("/login");
   }
 

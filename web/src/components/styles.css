@@ -140,6 +140,18 @@ small {
   top: 0;
 }
 
+.post-container {
+  position: fixed;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  padding-top: 1em;
+  padding-bottom: 1em;
+  background-color: var(--searchbar-color);
+  top: 0;
+}
+
 .search-container input {
   min-width: 18em;
   height: 30px;
@@ -148,7 +160,6 @@ small {
   background-color: var(--input-color);
   border: 0;
   border-radius: 4px;
-  transition: all 250ms ease-in-out;
 }
 
 .search-container input:focus {
@@ -159,7 +170,6 @@ small {
   height: 30px;
   border: 0;
   border-radius: 3px;
-  transition: all 250ms ease-in-out;
   cursor: pointer;
 }
 
