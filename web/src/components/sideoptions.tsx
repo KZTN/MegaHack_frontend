@@ -8,7 +8,7 @@ const SideOptions = () => {
     <>
       <div className="menu-wrapper">
         <div className="links-wrapper">
-          <Link to="/home">
+          <Link to={localStorage.getItem("usertype") === "0" ? "/home" : "/posts"}>
             <FaAngleLeft size={20}/>
             <small>Voltar</small>
           </Link>

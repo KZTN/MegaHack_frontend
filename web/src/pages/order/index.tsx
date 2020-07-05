@@ -67,6 +67,8 @@ const Order = () => {
   useEffect(() => {
     api.get(`users/${localStorage.getItem("id")}`).then((response) => {
       setUser(response.data);
+      console.log("olar")
+      console.log(response.data)
     });
   }, []);
 

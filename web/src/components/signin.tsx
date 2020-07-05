@@ -10,7 +10,14 @@ const SignIn = () => {
 
   useEffect(() => {
     if (localStorage.getItem("id")) {
-      history.push("/home");
+      if(localStorage.getItem("usertype")) {
+        if(localStorage.getItem("usertype") === "0"){
+          history.push("/home");
+        }else if(localStorage.getItem("usertype") === "1"){
+          history.push("/posts");
+        }
+      }
+      
     }
   }, [history]);
 
@@ -19,7 +26,12 @@ const SignIn = () => {
       .post("/sessions", { email: emailfield, password: passwordfield })
       .then((response) => {
         localStorage.setItem("id", response.data);
-        history.push("/home");
+        
+        if(localStorage.getItem("usertype") === "0"){
+          history.push("/home");
+        }else if(localStorage.getItem("usertype") === "1"){
+          history.push("/posts");
+        }
       })
       .catch((error) => {
         console.log(error);
