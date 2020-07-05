@@ -1,21 +1,33 @@
 import React, { useEffect, useState } from 'react'
 import api from '../../services/api';
+import ScrollArea from 'react-scrollbar'
+
+import './styles.css'
+
+import SideBar from '../../components/sidebar'
 
 interface User {
   orders: {
-    order: {
+    _id: string
+    state: string
+
+    product: {
       _id: string
+      name: string
+      price: number
+      thumbnail: string
+    }
+
+    establishment: {
+      _id: string
+      name: string
+      thumbnail: string
     }
   }[]
 }
 
-interface Order {
-  state: string
-}
-
 const Order = () => {
   const [user, setUser] = useState<User>()
-  const [listOrders, setListOrders] = useState<Order[]>([])
 
   useEffect(() => {
     api.get(`users/${localStorage.getItem("id")}`).then(response => {
@@ -23,24 +35,38 @@ const Order = () => {
     });
   }, []);
 
-  async function getOrders(id: string) {
-    await api.get(`orders/${id}`).then(response => {
-      listOrders.push(response.data)
-    })
-    // aqui o lenght é 1
-    console.log(listOrders.length)
-  }
-
-  useEffect(() => {
-    user?.orders.map(o => (
-      getOrders(o.order._id)
-    ))
-      // aqui o lenght é 0
-    console.log(listOrders.length)
-  }, [user]);
-
   return (
-    <div>{listOrders.length}</div>
+    <div>
+      
+      <ScrollArea
+        speed={0.8}
+        className="area"
+        contentClassName="content"
+        vertical={true}
+      >
+        <div className="wrapper-favorites">
+          {user?.orders.map(order => (
+            <div
+              className="wrapper-item"
+              id={order._id}
+            >
+              <div className="item-thumbnail">
+                <img src={order.product.thumbnail} alt="" />
+              </div>
+              <div className="wrapper-body">
+                <div className="wrapper-header">
+                  <strong>{order.product.name}</strong>
+                  <strong>R${order.product.price}</strong>
+                  <span>{order.establishment.name}</span>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </ScrollArea>
+
+      <SideBar />
+    </div>
   )
 }
 
