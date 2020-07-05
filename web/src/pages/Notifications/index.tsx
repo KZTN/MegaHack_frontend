@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import ActionsHeader from "../../components/ActionsHeader";
-import { FaEllipsisV } from "react-icons/fa";
+import logo from "../../assets/notification.jpg";
 import api from "../../services/api";
 import { useHistory } from "react-router-dom";
 import SideBar from "../../components/sidebar";
@@ -83,9 +83,9 @@ export default function Notifications() {
   }, [history]);
   return (
     <>
-    <TitleBar title="Notificações" />
+      <TitleBar title="Notificações" />
       <SideBar />
-      
+
       <section id="notifications">
         <ActionsHeader />
         <div className="content">
@@ -137,7 +137,9 @@ export default function Notifications() {
                       onChange={(e) => handleCheckBoxItem(e.target.value)}
                     />
                     <div className="li-content">
-                      <div className="li-photo"></div>
+                      <div className="li-photo">
+                        <img src={logo} alt="logo" />
+                      </div>
                       <div className="li-details">
                         <div className="li-title">
                           {notification.title.length > 40 ? (
