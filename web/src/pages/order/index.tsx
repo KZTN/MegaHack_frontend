@@ -75,7 +75,7 @@ const Order = () => {
     <div>
 
       <div className={classes.root}>
-        {[...Array(18)].map(i => (
+        {
           user?.orders.map(order => (
             <Paper className={classes.paper} id={order._id}>
               <Grid container spacing={2}>
@@ -96,6 +96,7 @@ const Order = () => {
                       <Typography variant="body2" color="textSecondary">
                         {order.state}
                       </Typography>
+                      <Typography variant="body2" color="textSecondary">05/07/2020 - 20:06</Typography>
                     </Grid>
                   </Grid>
                   <Grid item className={classes.titleItem}>
@@ -105,7 +106,7 @@ const Order = () => {
               </Grid>
             </Paper>
           ))
-        ))}
+        }
       </div>
 
       <SideBar />

@@ -59,7 +59,6 @@ const Home = () => {
       response.data.map((p: Post) => {
         let favorite = { id: p._id, isFavorite: false }
         favorites.push(favorite)
-        console.log(favorites)
       })
     });
   }, []);
@@ -95,10 +94,8 @@ const Home = () => {
                   actionIcon={
                     <IconButton 
                       className={classes.icon} 
-                      key={post._id} 
-                      onClick={(key) => handleFavorite(post._id)}
+                      onClick={() => handleFavorite(post._id)}
                     >
-
                       <StarIcon />
                     </IconButton>
                   }

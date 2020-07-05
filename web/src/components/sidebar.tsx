@@ -51,10 +51,6 @@ const SideBar = () => {
             <FaShoppingCart size={20} />
             <label>Pedidos</label>
           </Link>
-          <Link to="/">
-            <FaRegFileAlt size={20} />
-            <label>Histórico</label>
-          </Link>
           <Link to="/notifications">
             <FaBell size={20} />
             <label>Notificações</label>
