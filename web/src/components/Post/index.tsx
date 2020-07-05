@@ -62,6 +62,7 @@ const COMMENT_INITIAL_STATE: Comments_Type = [
 ];
 
 export default function Modal() {
+  const [isfavorite, setIsfavorite] = useState<Boolean>(false);
   const [quotes, setQuotes] = useState<Comments_Type>(COMMENT_INITIAL_STATE);
   const [post, setPost] = useState<Post_Type>(POST_INITIAL_STATE);
   const [quantity, setquantity] = useState<number>(
@@ -131,7 +132,33 @@ export default function Modal() {
         console.log(error);
       });
   }
-
+  async function handleFavorite() {
+    if (!isfavorite) {
+      await api
+        .post(`/favorites/${localStorage.getItem("id")}`, {
+          product: localStorage.getItem("favoriteID"),
+        })
+        .then(() => {
+          alert("Adicionado a sua lista de favoritos");
+          setIsfavorite(true);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    } else {
+      await api
+        .put(`/favorites/${localStorage.getItem("id")}`, {
+          product: localStorage.getItem("favoriteID"),
+        })
+        .then(() => {
+          alert("Removido da sua lista de favoritos");
+          setIsfavorite(false);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+  }
   return (
     <div className="post">
       <div className="content">
@@ -170,9 +197,17 @@ export default function Modal() {
               <MdAddShoppingCart size={24} color="#fff" />
               <strong>Comprar</strong>
             </div>
+            <div className="favorites" onClick={handleFavorite}>
+              <FiHeart size={24} color="#fff" />
+              {!isfavorite ? (
+                <strong>Adicionar a sua lista de favoritos</strong>
+              ) : (
+                <strong>Remover da sua lista de favoritos</strong>
+              )}
+            </div>
             <div className="contact" onClick={popupWPP}>
               <FaWhatsapp size={24} color="#fff" />
-              <span>Entre em contato</span>
+              <strong>Entre em contato</strong>
             </div>
           </div>
           <div className="comments">

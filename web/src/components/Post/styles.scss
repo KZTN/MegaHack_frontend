@@ -126,6 +126,23 @@
   }
 }
 
+.post .content .details .box-main-details .favorites {
+  margin: 10px auto 0 auto;
+  padding: 1rem 0;
+  width: 80%;
+  border-radius: 4px;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  color: #fff;
+  background: #efad41;
+  transition: all 0.1s ease-in-out;
+  &:hover {
+    filter: brightness(90%);
+  }
+}
 .post .content .details .box-main-details .contact * {
   cursor: pointer;
 }

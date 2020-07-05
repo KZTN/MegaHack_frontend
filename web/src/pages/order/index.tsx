@@ -98,6 +98,9 @@ const Order = () => {
                       <Typography variant="body2" color="textSecondary">
                         {order.state}
                       </Typography>
+                      <Typography variant="body2" color="textSecondary">
+                        05/07/2020 - 20:06
+                      </Typography>
                     </Grid>
                   </Grid>
                   <Grid item className={classes.titleItem}>
