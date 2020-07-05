@@ -1,9 +1,27 @@
 import React, { useEffect, useState, FormEvent } from "react";
 import "./styles.scss";
 import { FaTimes, FaWhatsapp, FaStar } from "react-icons/fa";
+import { MdAddShoppingCart } from "react-icons/md";
+
 import { FiHeart } from "react-icons/fi";
 import api from "../../services/api";
 
+type Post_Type = {
+  _id: string;
+  title: string;
+  description: string;
+  price: string;
+  hashtags: string;
+  thumbnail: string;
+};
+const POST_INITIAL_STATE: Post_Type = {
+  _id: "",
+  title: "",
+  description: "",
+  price: "",
+  hashtags: "",
+  thumbnail: "",
+};
 type Establishment_Type = {
   _id: string;
   name: string;
@@ -20,7 +38,6 @@ const ESTABLISHMENT_INITIAL_STATE: Establishment_Type = {
   work_end_time: "",
   thumbnail: "",
 };
-
 type Comments_Type = [
   {
     _id: string;
@@ -29,7 +46,7 @@ type Comments_Type = [
       thumbnail: string;
     };
     comment: string;
-    rate: number;
+    like: boolean;
   }
 ];
 const COMMENT_INITIAL_STATE: Comments_Type = [
@@ -40,27 +57,30 @@ const COMMENT_INITIAL_STATE: Comments_Type = [
       thumbnail: "",
     },
     comment: "",
-    rate: 0,
+    like: false,
   },
 ];
 
-export default function Post() {
-  const [isfavorite, setIsfavorite] = useState<Boolean>(true);
+export default function Modal() {
   const [quotes, setQuotes] = useState<Comments_Type>(COMMENT_INITIAL_STATE);
+  const [post, setPost] = useState<Post_Type>(POST_INITIAL_STATE);
+  const [quantity, setquantity] = useState<number>(
+    Math.floor(Math.random() * Math.floor(20))
+  );
   const [establishment, setEstablishment] = useState<Establishment_Type>(
     ESTABLISHMENT_INITIAL_STATE
   );
-
   const [comment, setComment] = useState("");
-  const [rate, setRate] = useState<any>();
+  const [like, setLike] = useState<boolean>(false);
 
-  async function getUserData() {
+  async function getPostData() {
     await api
-      .get(`/establishments/${localStorage.getItem("establishmentID")}`)
+      .get(`/posts/${localStorage.getItem("postID")}`)
       .then((response) => {
         console.log(response.data);
         setQuotes(response.data.comments);
-        setEstablishment(response.data);
+        setPost(response.data);
+        setEstablishment(response.data.establishment);
       })
       .catch((error) => {
         console.log(error);
@@ -68,25 +88,25 @@ export default function Post() {
   }
 
   useEffect(() => {
-    getUserData();
+    getPostData();
   }, []);
 
   function popupWPP() {
     window.open(`https://wa.me/${establishment.phone}`, "_top");
   }
 
-  async function handleCloseModal() {
-    localStorage.setItem("favoriteID", "");
-    localStorage.setItem("modalIsOpen", "close");
+  async function handleClosePost() {
+    localStorage.setItem("postID", "");
+    localStorage.setItem("postIsOpen", "close");
     window.location.reload();
   }
 
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
     await api
-      .post(`/comments/${establishment._id}`, {
+      .post(`/commentsposts/${localStorage.getItem("postID")}`, {
         comment,
-        rate,
+        like,
         author: localStorage.getItem("id"),
       })
       .then(() => {
@@ -97,68 +117,61 @@ export default function Post() {
         console.log(error);
       });
   }
-  async function handleFavorite() {
-    if (!isfavorite) {
-      await api
-        .post(`/favorites/${localStorage.getItem("id")}`, {
-          product: localStorage.getItem("favoriteID"),
-        })
-        .then(() => {
-          alert("Adicionado a sua lista de favoritos");
-          setIsfavorite(true);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    } else {
-      await api
-        .put(`/favorites/${localStorage.getItem("id")}`, {
-          product: localStorage.getItem("favoriteID"),
-        })
-        .then(() => {
-          alert("Removido da sua lista de favoritos");
-          setIsfavorite(false);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    }
+  async function handlePurchase() {
+    await api
+      .post("/orders", {
+        user: localStorage.getItem("id"),
+        post: localStorage.getItem("postID"),
+        establishment: establishment._id,
+      })
+      .then(() => {
+        alert("Pedido realizado com sucesso!");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
+
   return (
-    <div className="modal">
+    <div className="post">
       <div className="content">
         <div className="close-button">
-          <button onClick={handleCloseModal}>
+          <button onClick={handleClosePost}>
             <FaTimes size={24} color="#444" />
           </button>
         </div>
         <div className="details">
           <div className="box-img">
-            <img src={establishment.thumbnail} />
+            <img src={post.thumbnail} />
           </div>
           <div className="box-main-details">
             <h1 style={{ marginBottom: 20 }}>
-              <strong>{establishment.name}</strong>
+              <strong>{post.title}</strong>
             </h1>
+            <h2>
+              <strong>
+                Quantidade:{" "}
+                {quantity === 0 ? "Esgotado!" : `${quantity} unidades`}
+              </strong>
+            </h2>
+            <h2>
+              <strong>Valor unid: R${post.price}</strong>
+            </h2>
             <div className="box-main-item" style={{ marginBottom: 2 }}>
-              <h3>Estabelecimento {establishment.name}</h3>
+              <h3>Estabelecimento: {establishment.name}</h3>
             </div>
             <div className="box-main-item" style={{ marginBottom: 2 }}>
               <h3>
-                Horário de funcionamento {establishment.work_start_time} às{" "}
+                Horário de funcionamento: {establishment.work_start_time} às{" "}
                 {establishment.work_end_time}
               </h3>
             </div>
-            <div className="favorites" onClick={handleFavorite}>
-              <FiHeart size={24} color="#666" />
-              {!isfavorite ? (
-                <span>Adicionar a sua lista de favoritos</span>
-              ) : (
-                <span>Remover da sua lista de favoritos</span>
-              )}
+            <div className="purchase" onClick={handlePurchase}>
+              <MdAddShoppingCart size={24} color="#fff" />
+              <strong>Comprar</strong>
             </div>
             <div className="contact" onClick={popupWPP}>
-              <FaWhatsapp size={24} color="#fff" style={{ marginRight: 5 }} />
+              <FaWhatsapp size={24} color="#fff" />
               <span>Entre em contato</span>
             </div>
           </div>
@@ -179,7 +192,7 @@ export default function Post() {
                     <span>{e.author.name}</span>
                   </div>
                   <div className="comment-rating">
-                    <span>{e.rate}</span>
+                    <span>{e.like}</span>
                     <FaStar
                       size={12}
                       color="#222"
@@ -205,15 +218,6 @@ export default function Post() {
                 placeholder="Descreva em detalhes o que achou deste estabelecimento."
               ></textarea>
               <div className="wrap">
-                <input
-                  type="number"
-                  placeholder="nota"
-                  min="1"
-                  max="5"
-                  value={rate}
-                  onChange={(e) => setRate(e.target.value)}
-                  required
-                />
                 <button type="submit">Enviar</button>
               </div>
             </form>
