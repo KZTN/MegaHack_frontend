@@ -15,6 +15,8 @@ import TitleBar from "../../components/titlebar";
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
+      height: "100%",
+      paddingTop: "150px",
       flexGrow: 1,
     },
     paper: {
@@ -70,8 +72,8 @@ const Order = () => {
     api.get(`users/${localStorage.getItem("id")}`).then((response) => {
       console.log(response.data);
       setUser(response.data);
-      console.log("olar")
-      console.log(response.data)
+      console.log("olar");
+      console.log(response.data);
     });
   }, []);
 
