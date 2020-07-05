@@ -8,12 +8,13 @@ import ButtonBase from '@material-ui/core/ButtonBase';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 
 import SideBar from '../../components/sidebar'
+import TitleBar from "../../components/titlebar";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       flexGrow: 1,
-
+      marginTop: '6em'
     },
     paper: {
       padding: theme.spacing(2),
@@ -119,7 +120,7 @@ const StabHistory = () => {
           ))
         }
       </div>
-
+      <TitleBar title="Histórico" />
       <SideBar />
     </div>
   )

@@ -11,6 +11,7 @@ import Order from "./pages/order";
 import StabPost from "./pages/stabpost";
 import StabHistory from "./pages/stabhistory";
 import StabOrder from "./pages/staborder";
+import Statistics from "./pages/statistics";
 
 const Routes = () => {
   return (
@@ -25,6 +26,7 @@ const Routes = () => {
       <Route component={StabPost} path="/posts" />
       <Route component={StabHistory} path="/history" />      
       <Route component={StabOrder} path="/staborders" />
+      <Route component={Statistics} path="/statistics" />
     </BrowserRouter>
   );
 };

@@ -43,7 +43,8 @@ const SearchBar = () => {
           <img src={logo} alt="logo" />
         </div>
       ) : localStorage.getItem("usertype") === "1" ? (
-        <div className="post-container">
+        <div className="search-container">
+          <img src={origem} alt="origem" />
           <Button
             variant="contained"
             className={classes.button}
@@ -58,6 +59,7 @@ const SearchBar = () => {
           >
             Exluir
           </Button>
+          <img src={logo} alt="logo" />
         </div>
       ) : (
         <div className="search-container">

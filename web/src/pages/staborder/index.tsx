@@ -10,12 +10,13 @@ import Button from '@material-ui/core/Button';
 import CheckIcon from '@material-ui/icons/Check';
 
 import SideBar from '../../components/sidebar'
+import TitleBar from "../../components/titlebar";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       flexGrow: 1,
-
+      marginTop: '6em'
     },
     paper: {
       padding: theme.spacing(2),
@@ -127,7 +128,7 @@ const StabHistory = () => {
           ))
         }
       </div>
-
+      <TitleBar title="Pedidos" />
       <SideBar />
     </div>
   )

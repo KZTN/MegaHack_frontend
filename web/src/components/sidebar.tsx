@@ -92,11 +92,11 @@ const SideBar = () => {
                 <FaRegFileAlt size={20} />
                 <label>Histórico</label>
               </Link>
-              <Link to="/notifications">
+              <Link to="/statistics">
                 <FaRegChartBar size={20} />
                 <label>Estatísticas</label>
               </Link>
-              <Link to="/notifications">
+              <Link to="/">
                 <FaBell size={20} />
                 <label>Notificações</label>
               </Link>
