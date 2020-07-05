@@ -78,7 +78,7 @@ html {
   left: 0;
   margin: auto;
   display: flex;
-  width: 250px;
+  width: 300px;
   background-color: var(--menu-color);
 }
 

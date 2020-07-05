@@ -9,17 +9,17 @@ import './styles.css'
 const images = [
   {
     url: require('../../assets/client.jpg'),
-    title: 'Consumidor',
+    title: 'Sou Consumidor',
     width: '33%',
   },
   {
     url: require('../../assets/chef.jpg'),
-    title: 'Empresa',
+    title: 'Sou Empresa',
     width: '33%',
   },
   {
     url: require('../../assets/entregador.jpg'),
-    title: 'Entregador',
+    title: 'Sou Entregador',
     width: '33%',
   },
 ];
