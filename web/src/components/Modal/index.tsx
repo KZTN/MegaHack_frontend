@@ -98,31 +98,17 @@ export default function Post() {
       });
   }
   async function handleFavorite() {
-    if (!isfavorite) {
-      await api
-        .post(`/favorites/${localStorage.getItem("id")}`, {
-          product: localStorage.getItem("favoriteID"),
-        })
-        .then(() => {
-          alert("Adicionado a sua lista de favoritos");
-          setIsfavorite(true);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    } else {
-      await api
-        .put(`/favorites/${localStorage.getItem("id")}`, {
-          product: localStorage.getItem("favoriteID"),
-        })
-        .then(() => {
-          alert("Removido da sua lista de favoritos");
-          setIsfavorite(false);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    }
+    await api
+      .put(`/favorites/${localStorage.getItem("id")}`, {
+        establishment: establishment._id,
+      })
+      .then(() => {
+        alert("Removido da sua lista de favoritos");
+        setIsfavorite(false);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
   return (
     <div className="modal">

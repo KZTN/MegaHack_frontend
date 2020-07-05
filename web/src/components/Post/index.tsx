@@ -133,31 +133,17 @@ export default function Modal() {
       });
   }
   async function handleFavorite() {
-    if (!isfavorite) {
-      await api
-        .post(`/favorites/${localStorage.getItem("id")}`, {
-          product: localStorage.getItem("favoriteID"),
-        })
-        .then(() => {
-          alert("Adicionado a sua lista de favoritos");
-          setIsfavorite(true);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    } else {
-      await api
-        .put(`/favorites/${localStorage.getItem("id")}`, {
-          product: localStorage.getItem("favoriteID"),
-        })
-        .then(() => {
-          alert("Removido da sua lista de favoritos");
-          setIsfavorite(false);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    }
+    await api
+      .post(`/favorites/${localStorage.getItem("id")}`, {
+        establishment: establishment._id,
+      })
+      .then(() => {
+        alert("Adicionado a sua lista de favoritos");
+        setIsfavorite(true);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
   return (
     <div className="post">
@@ -202,7 +188,7 @@ export default function Modal() {
               {!isfavorite ? (
                 <strong>Adicionar a sua lista de favoritos</strong>
               ) : (
-                <strong>Remover da sua lista de favoritos</strong>
+                <strong>Adicionado a sua lista de favoritos</strong>
               )}
             </div>
             <div className="contact" onClick={popupWPP}>
