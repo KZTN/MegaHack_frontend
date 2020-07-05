@@ -41,6 +41,7 @@ const SignUp = () => {
     <div className="content">
       <div className="form">
         <form onSubmit={handleSubmit}>
+        <img src={require('../assets/logo-completo.png')} alt="" style={{width: '200px'}}/>
           <input
             type="text"
             name="name"
