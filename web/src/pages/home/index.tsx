@@ -98,7 +98,7 @@ const Home = () => {
                 src={post.thumbnail}
                 alt={post.title}
                 className="img-container"
-                style={{ objectFit: "cover", width: "100%" }}
+                style={{ objectFit: "cover", width: "100vh" }}
               />
               <GridListTileBar
                 title={<strong>{post.establishment.name}</strong>}
