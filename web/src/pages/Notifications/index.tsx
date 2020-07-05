@@ -5,6 +5,8 @@ import api from "../../services/api";
 import { useHistory } from "react-router-dom";
 import SideBar from "../../components/sidebar";
 import "./styles.scss";
+import TitleBar from "../../components/titlebar";
+
 type Notifications_Type = [
   {
     _id: string;
@@ -81,7 +83,9 @@ export default function Notifications() {
   }, [history]);
   return (
     <>
+    <TitleBar title="Notificações" />
       <SideBar />
+      
       <section id="notifications">
         <ActionsHeader />
         <div className="content">

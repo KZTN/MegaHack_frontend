@@ -10,6 +10,7 @@ import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 import "./styles.css";
 
 import SideBar from "../../components/sidebar";
+import TitleBar from "../../components/titlebar";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -116,7 +117,7 @@ const Order = () => {
           </Paper>
         ))}
       </div>
-
+      <TitleBar title="Pedidos" />
       <SideBar />
     </div>
   );

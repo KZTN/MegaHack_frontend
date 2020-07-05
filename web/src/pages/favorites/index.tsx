@@ -6,6 +6,7 @@ import Modal from "../../components/Modal";
 import SideBar from "../../components/sidebar";
 import { Link } from "react-router-dom";
 import "./styles.scss";
+import TitleBar from "../../components/titlebar";
 
 type Favorites_Type = [
   {
@@ -65,10 +66,7 @@ export default function Favorites() {
         <section id="favorites">
           <div className="content">
             <div className="header">
-              <div className="wrapper">
-                <img src={logo} alt="logo" />
-                <span>contato</span>
-              </div>
+ 
               <div className="wrapper-actions">
                 <Link to="/home">Ver postagens mais recentes</Link>
                 <Link to="/profile">Ver perfil</Link>
@@ -104,6 +102,7 @@ export default function Favorites() {
           </div>
         </section>
       ) : null}
+      <TitleBar title="Notificações" />
       <SideBar />
     </div>
   );
