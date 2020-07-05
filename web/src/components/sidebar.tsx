@@ -1,18 +1,25 @@
-import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom';
-import { FaHome, FaRegStar, FaShoppingCart, FaRegFileAlt, FaDoorOpen } from 'react-icons/fa'
-import api from '../services/api';
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import {
+  FaHome,
+  FaRegStar,
+  FaShoppingCart,
+  FaRegFileAlt,
+  FaDoorOpen,
+  FaBell,
+} from "react-icons/fa";
+import api from "../services/api";
 
 interface User {
-  name: string
-  thumbnail: string
+  name: string;
+  thumbnail: string;
 }
 
 const SideBar = () => {
-  const [user, setUser] = useState<User>()
+  const [user, setUser] = useState<User>();
 
   useEffect(() => {
-    api.get(`users/${localStorage.getItem("id")}`).then(response => {
+    api.get(`users/${localStorage.getItem("id")}`).then((response) => {
       setUser(response.data);
     });
   }, []);
@@ -20,7 +27,7 @@ const SideBar = () => {
   function handleLogout() {
     localStorage.removeItem("id");
   }
-  
+
   return (
     <>
       <div className="menu-wrapper">
@@ -47,6 +54,10 @@ const SideBar = () => {
           <Link to="/">
             <FaRegFileAlt size={20} />
             <label>Histórico</label>
+          </Link>
+          <Link to="/notifications">
+            <FaBell size={20} />
+            <label>Notificações</label>
           </Link>
           <Link to="/" onClick={handleLogout}>
             <FaDoorOpen size={20} />

@@ -7,6 +7,7 @@ import Home from "./pages/home";
 import Profile from "./pages/profile";
 import Favorites from "./pages/favorites";
 import Notifications from "./pages/Notifications";
+import Order from "./pages/order";
 
 const Routes = () => {
   return (
@@ -17,6 +18,7 @@ const Routes = () => {
       <Route component={Profile} path="/profile" />
       <Route component={Favorites} path="/favorites" />
       <Route component={Notifications} path="/notifications" />
+      <Route component={Order} path="/orders" />
     </BrowserRouter>
   );
 };
