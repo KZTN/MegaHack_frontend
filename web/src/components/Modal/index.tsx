@@ -4,30 +4,6 @@ import { FaTimes, FaWhatsapp, FaStar } from "react-icons/fa";
 import { FiHeart } from "react-icons/fi";
 import api from "../../services/api";
 
-type Product_Type = {
-  ingredients: string[];
-  _id: string;
-  name: string;
-  price: Number;
-  establishment: string;
-  createdAt: string;
-  updatedAt: string;
-  __v: Number;
-  thumbnail: string;
-};
-
-const PRODUCT_INITIAL_STATE: Product_Type = {
-  ingredients: [],
-  _id: "",
-  name: "",
-  price: 0,
-  establishment: "",
-  createdAt: "",
-  updatedAt: ",",
-  __v: 0,
-  thumbnail: "",
-};
-
 type Establishment_Type = {
   _id: string;
   name: string;
@@ -69,25 +45,22 @@ const COMMENT_INITIAL_STATE: Comments_Type = [
 ];
 
 export default function Modal() {
-  const [isfavorite, setIsfavorite] = useState(false);
-  const [favchanged, setFavchanged] = useState(false);
-  const [product, setProduct] = useState<Product_Type>(PRODUCT_INITIAL_STATE);
+  const [isfavorite, setIsfavorite] = useState<Boolean>(true);
   const [quotes, setQuotes] = useState<Comments_Type>(COMMENT_INITIAL_STATE);
   const [establishment, setEstablishment] = useState<Establishment_Type>(
     ESTABLISHMENT_INITIAL_STATE
   );
 
   const [comment, setComment] = useState("");
-  const [comments, setComments] = useState([]);
   const [rate, setRate] = useState<any>();
 
   async function getUserData() {
     await api
-      .get(`/products/${localStorage.getItem("favoriteID")}`)
+      .get(`/establishments/${localStorage.getItem("establishmentID")}`)
       .then((response) => {
-        setProduct(response.data);
-        setQuotes(response.data.establishment.comments);
-        setEstablishment(response.data.establishment);
+        console.log(response.data);
+        setQuotes(response.data.comments);
+        setEstablishment(response.data);
       })
       .catch((error) => {
         console.log(error);
@@ -124,6 +97,33 @@ export default function Modal() {
         console.log(error);
       });
   }
+  async function handleFavorite() {
+    if (!isfavorite) {
+      await api
+        .post(`/favorites/${localStorage.getItem("id")}`, {
+          product: localStorage.getItem("favoriteID"),
+        })
+        .then(() => {
+          alert("Adicionado a sua lista de favoritos");
+          setIsfavorite(true);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    } else {
+      await api
+        .put(`/favorites/${localStorage.getItem("id")}`, {
+          product: localStorage.getItem("favoriteID"),
+        })
+        .then(() => {
+          alert("Removido da sua lista de favoritos");
+          setIsfavorite(false);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+  }
   return (
     <div className="modal">
       <div className="content">
@@ -134,23 +134,12 @@ export default function Modal() {
         </div>
         <div className="details">
           <div className="box-img">
-            <img src={product.thumbnail} />
+            <img src={establishment.thumbnail} />
           </div>
           <div className="box-main-details">
             <h1 style={{ marginBottom: 20 }}>
-              <strong>{product.name}</strong>
+              <strong>{establishment.name}</strong>
             </h1>
-            <div className="box-main-item" style={{ marginBottom: 2 }}>
-              <h3>valor: R${product.price}</h3>
-            </div>
-            <div className="box-main-item" style={{ marginBottom: 2 }}>
-              <h3>
-                Ingredientes:{" "}
-                {product.ingredients.map((ingredient) => (
-                  <span>{ingredient} </span>
-                ))}
-              </h3>
-            </div>
             <div className="box-main-item" style={{ marginBottom: 2 }}>
               <h3>Estabelecimento {establishment.name}</h3>
             </div>
@@ -159,6 +148,14 @@ export default function Modal() {
                 Horário de funcionamento {establishment.work_start_time} às{" "}
                 {establishment.work_end_time}
               </h3>
+            </div>
+            <div className="favorites" onClick={handleFavorite}>
+              <FiHeart size={24} color="#666" />
+              {!isfavorite ? (
+                <span>Adicionar a sua lista de favoritos</span>
+              ) : (
+                <span>Remover da sua lista de favoritos</span>
+              )}
             </div>
             <div className="contact" onClick={popupWPP}>
               <FaWhatsapp size={24} color="#fff" style={{ marginRight: 5 }} />

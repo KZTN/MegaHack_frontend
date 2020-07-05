@@ -9,26 +9,22 @@ import "./styles.scss";
 
 type Favorites_Type = [
   {
-    ingredients: string[];
     _id: String;
     name: String;
-    price: Number;
-    establishment: String;
-    createdAt: String;
-    updatedAt: String;
+    city: String;
+    work_start_time: String;
+    work_end_time: String;
     __v: Number;
     thumbnail: String;
   }
 ];
 const INITIAL_STATE: Favorites_Type = [
   {
-    ingredients: [],
     _id: "",
     name: "",
-    price: 0,
-    establishment: "String",
-    createdAt: "",
-    updatedAt: ",",
+    city: "",
+    work_start_time: "",
+    work_end_time: ",",
     __v: 0,
     thumbnail: "",
   },
@@ -56,8 +52,8 @@ export default function Favorites() {
       history.push("/login");
     }
   });
-  function handleclick(favoriteID: string) {
-    localStorage.setItem("favoriteID", favoriteID);
+  function handleclick(establishmentID: string) {
+    localStorage.setItem("establishmentID", establishmentID);
     localStorage.setItem("modalIsOpen", "open");
     window.location.reload();
   }
@@ -79,7 +75,7 @@ export default function Favorites() {
               </div>
             </div>
             <header>
-              <h1>Seus pratos favoritos</h1>
+              <h1>Seus estabelecimentos favoritos</h1>
             </header>
             <div className="wrapper-favorites">
               {favorites.map((favitem: any) => (
@@ -96,10 +92,10 @@ export default function Favorites() {
                       <span>{favitem.name}</span>
                     </div>
                     <div className="wrapper-header">
-                      <span>{favitem.ingredients.join(", ")}</span>
+                      <span>{favitem.city}</span>
                     </div>
                     <div className="wrapper-header">
-                      <strong>R${favitem.price}</strong>
+                      <strong>Aberto!</strong>
                     </div>
                   </div>
                 </div>
