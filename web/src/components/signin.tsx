@@ -10,32 +10,40 @@ const SignIn = () => {
 
   useEffect(() => {
     if (localStorage.getItem("id")) {
-      if(localStorage.getItem("usertype")) {
-        if(localStorage.getItem("usertype") === "0"){
+      if (localStorage.getItem("usertype")) {
+        if (localStorage.getItem("usertype") === "0") {
           history.push("/home");
-        }else if(localStorage.getItem("usertype") === "1"){
+        } else if (localStorage.getItem("usertype") === "1") {
           history.push("/posts");
         }
       }
-      
+
     }
   }, [history]);
 
   async function getData() {
-    await api
+    if (localStorage.getItem("usertype") === "0") {
+      await api
       .post("/sessions", { email: emailfield, password: passwordfield })
       .then((response) => {
         localStorage.setItem("id", response.data);
-        
-        if(localStorage.getItem("usertype") === "0"){
-          history.push("/home");
-        }else if(localStorage.getItem("usertype") === "1"){
-          history.push("/posts");
-        }
+        history.push("/home");
       })
       .catch((error) => {
         console.log(error);
       });
+    } else if (localStorage.getItem("usertype") === "1") {
+      await api
+      .post("/sessionsestablishment", { email: emailfield, password: passwordfield })
+      .then((response) => {
+        localStorage.setItem("id", response.data);
+        history.push("/posts");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    }
+
   }
 
   function handleSubmit(e: FormEvent) {
@@ -46,7 +54,7 @@ const SignIn = () => {
   return (
     <div className="form">
       <form onSubmit={handleSubmit}>
-        <img src={require('../assets/logo-completo.png')} alt="" style={{width: '200px'}}/>
+        <img src={require('../assets/logo-completo.png')} alt="" style={{ width: '200px' }} />
         <input
           type="text"
           name="email"
