@@ -48,6 +48,7 @@ html {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
 }
 
 .footer button {
@@ -59,6 +60,7 @@ html {
   transition: all 250ms ease-in-out;
   cursor: pointer;
   padding: 0.4em;
+  width: 150px;
 }
 
 .footer button:hover {

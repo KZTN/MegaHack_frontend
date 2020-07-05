@@ -1,10 +1,67 @@
 import React, { useState } from 'react'
+import { makeStyles, Theme } from '@material-ui/core/styles';
+import AppBar from '@material-ui/core/AppBar';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
+import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
 
 import './styles.css'
 import SignIn from '../../components/signin'
 import SignUp from '../../components/signup'
 
+interface TabPanelProps {
+  children?: React.ReactNode;
+  index: any;
+  value: any;
+}
+
+function TabPanel(props: TabPanelProps) {
+  const { children, value, index, ...other } = props;
+
+  return (
+    <div
+      role="tabpanel"
+      hidden={value !== index}
+      id={`simple-tabpanel-${index}`}
+      aria-labelledby={`simple-tab-${index}`}
+      {...other}
+    >
+      {value === index && (
+        <Box p={3}>
+          <Typography>{children}</Typography>
+        </Box>
+      )}
+    </div>
+  );
+}
+
+function a11yProps(index: any) {
+  return {
+    id: `simple-tab-${index}`,
+    'aria-controls': `simple-tabpanel-${index}`,
+  };
+}
+
+const useStyles = makeStyles((theme: Theme) => ({
+  root: {
+    flexGrow: 1,
+    backgroundColor: theme.palette.background.paper,
+    width: '100%',
+  },
+  tabs: {
+    backgroundColor: '#e09f3e',
+  }
+}));
+
 const UserLogin = () => {
+  const classes = useStyles();
+  const [value, setValue] = React.useState(0);
+
+  const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
+    setValue(newValue);
+  };
+
   const [loginAction, setLoginAction] = useState(true);
 
   function handleActionButton(isLogin: boolean) {
@@ -12,16 +69,22 @@ const UserLogin = () => {
   }
 
   return (
-    <div className="base-container">
-      <div className="header">
-        <button onClick={() => handleActionButton(true)}>Entrar</button>
-        <button onClick={() => handleActionButton(false)}>Cadastrar</button>
-      </div>
-
-      {loginAction
-        ? <SignIn />
-        : <SignUp />
-      }
+    <div className={classes.root}>
+      <AppBar position="static">
+        <Tabs value={value}
+          onChange={handleChange}
+          className={classes.tabs}
+          centered>
+          <Tab label="Login" {...a11yProps(0)} />
+          <Tab label="Cadastro" {...a11yProps(1)} />
+        </Tabs>
+      </AppBar>
+      <TabPanel value={value} index={0}>
+        <SignIn />
+      </TabPanel>
+      <TabPanel value={value} index={1}>
+        <SignUp />
+      </TabPanel>
     </div>
   )
 }
