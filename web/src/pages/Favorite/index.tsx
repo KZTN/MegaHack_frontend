@@ -3,13 +3,13 @@ import { useHistory } from "react-router-dom";
 
 import api from "../../services/api";
 import Modal from "../../components/Modal";
-import SideBar from "../../components/sidebar";
+import moment from "moment";
 import { Link } from "react-router-dom";
 import "./styles.scss";
 
 type Favorites_Type = [
   {
-    ingredients: string[];
+    Ingredients: string[];
     _id: String;
     name: String;
     price: Number;
@@ -22,7 +22,7 @@ type Favorites_Type = [
 ];
 const INITIAL_STATE: Favorites_Type = [
   {
-    ingredients: [],
+    Ingredients: [],
     _id: "",
     name: "",
     price: 0,
@@ -36,11 +36,14 @@ const INITIAL_STATE: Favorites_Type = [
 export default function Favorites() {
   const history = useHistory();
   const [favorites, setFavorites] = useState<Favorites_Type>(INITIAL_STATE);
+  const [modalisopen, setModalisopen] = useState(false);
+  const [selectedpoint, setSelectedpoint] = useState();
 
   async function getUserData() {
     await api
       .get(`/users/${localStorage.getItem("id")}`)
       .then((response) => {
+        console.log(JSON.stringify(response.data[0]));
         setFavorites(response.data.favorites);
       })
 
@@ -56,15 +59,24 @@ export default function Favorites() {
       history.push("/login");
     }
   });
-  function handleclick(favoriteID: string) {
-    localStorage.setItem("favoriteID", favoriteID);
-    localStorage.setItem("modalIsOpen", "open");
-    window.location.reload();
+  /*   function handleclick(favitem) {
+    setSelectedpoint(favitem);
+    setModalisopen(true);
   }
+  function handleCloseModal() {
+    setModalisopen(false);
+    setSelectedpoint(null);
+  } */
 
   return (
-    <div className="wrapper">
-      {localStorage.getItem("modalIsOpen") === "open" ? <Modal /> : null}
+    <>
+      {/*       {modalisopen ? (
+        <Modal
+          point={selectedpoint}
+          onClick={handleCloseModal}
+          //favorite={favorite}
+        />
+      ) : null} */}
       {favorites !== null ? (
         <section id="favorites">
           <div className="content">
@@ -74,7 +86,7 @@ export default function Favorites() {
                 <span>contato</span>
               </div>
               <div className="wrapper-actions">
-                <Link to="/home">Ver postagens mais recentes</Link>
+                <Link to="/dashboard">Ver mapa</Link>
                 <Link to="/profile">Ver perfil</Link>
               </div>
             </div>
@@ -85,7 +97,7 @@ export default function Favorites() {
               {favorites.map((favitem: any) => (
                 <div
                   className="wrapper-item"
-                  onClick={() => handleclick(favitem._id)}
+                  //onClick={() => handleclick(favitem)}
                   key={favitem._id}
                 >
                   <div className="item-thumbnail">
@@ -95,12 +107,6 @@ export default function Favorites() {
                     <div className="wrapper-header">
                       <span>{favitem.name}</span>
                     </div>
-                    <div className="wrapper-header">
-                      <span>{favitem.ingredients.join(", ")}</span>
-                    </div>
-                    <div className="wrapper-header">
-                      <strong>R${favitem.price}</strong>
-                    </div>
                   </div>
                 </div>
               ))}
@@ -108,7 +114,6 @@ export default function Favorites() {
           </div>
         </section>
       ) : null}
-      <SideBar />
-    </div>
+    </>
   );
 }

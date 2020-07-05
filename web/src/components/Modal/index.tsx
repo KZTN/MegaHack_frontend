@@ -29,6 +29,7 @@ const PRODUCT_INITIAL_STATE: Product_Type = {
 };
 
 type Establishment_Type = {
+  _id: string;
   name: string;
   phone: string;
   work_start_time: string;
@@ -36,6 +37,7 @@ type Establishment_Type = {
   thumbnail: string;
 };
 const ESTABLISHMENT_INITIAL_STATE: Establishment_Type = {
+  _id: "",
   name: "",
   phone: "",
   work_start_time: "",
@@ -46,7 +48,10 @@ const ESTABLISHMENT_INITIAL_STATE: Establishment_Type = {
 type Comments_Type = [
   {
     _id: string;
-    author: string;
+    author: {
+      name: string;
+      thumbnail: string;
+    };
     comment: string;
     rate: number;
   }
@@ -54,7 +59,10 @@ type Comments_Type = [
 const COMMENT_INITIAL_STATE: Comments_Type = [
   {
     _id: "",
-    author: "",
+    author: {
+      name: "",
+      thumbnail: "",
+    },
     comment: "",
     rate: 0,
   },
@@ -90,8 +98,8 @@ export default function Modal() {
     getUserData();
   }, []);
 
-  function popupWPP(phone: string) {
-    window.open(`https://wa.me/${phone}`, "_top");
+  function popupWPP() {
+    window.open(`https://wa.me/${establishment.phone}`, "_top");
   }
 
   async function handleCloseModal() {
@@ -100,12 +108,26 @@ export default function Modal() {
     window.location.reload();
   }
 
-  async function handleSubmit(e: FormEvent) {}
+  async function handleSubmit(e: FormEvent) {
+    e.preventDefault();
+    await api
+      .post(`/comments/${establishment._id}`, {
+        comment,
+        rate,
+        author: localStorage.getItem("id"),
+      })
+      .then(() => {
+        alert("comentário feito com sucesso");
+        window.location.reload();
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
   return (
     <div className="modal">
       <div className="content">
         <div className="close-button">
-          <span>#{product._id}</span>
           <button onClick={handleCloseModal}>
             <FaTimes size={24} color="#444" />
           </button>
@@ -138,8 +160,10 @@ export default function Modal() {
                 {establishment.work_end_time}
               </h3>
             </div>
-            <FaWhatsapp size={24} color="#fff" style={{ marginRight: 5 }} />
-            <span>Entre em contato</span>
+            <div className="contact" onClick={popupWPP}>
+              <FaWhatsapp size={24} color="#fff" style={{ marginRight: 5 }} />
+              <span>Entre em contato</span>
+            </div>
           </div>
           <div className="comments">
             <h1>Comentários:</h1>
@@ -149,11 +173,13 @@ export default function Modal() {
                   <div className="comment-author">
                     <img
                       src={
-                        "https://media.discordapp.net/attachments/697512026251067472/711345678885847140/user-solid.png"
+                        e.author.thumbnail
+                          ? e.author.thumbnail
+                          : "https://media.discordapp.net/attachments/697512026251067472/711345678885847140/user-solid.png"
                       }
                       alt=""
                     />
-                    <span>{e.author}</span>
+                    <span>{e.author.name}</span>
                   </div>
                   <div className="comment-rating">
                     <span>{e.rate}</span>
