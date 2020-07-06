@@ -91,14 +91,14 @@ const Home = () => {
   return (
     <div>
       <div className="root">
-        <GridList cellHeight={400} className="gridList" cols={2}>
+        <GridList cellHeight={window.innerWidth*0.3} className="gridList" cols={2}>
           {posts.map((post) => (
             <GridListTile key={post._id} onClick={() => handleClick(post._id)}>
               <img
                 src={post.thumbnail}
                 alt={post.title}
                 className="img-container"
-                style={{ objectFit: "cover", width: "100vh" }}
+                style={{ objectFit: "cover", width: window.innerWidth*0.6 }}
               />
               <GridListTileBar
                 title={<strong>{post.establishment.name}</strong>}

@@ -82,7 +82,7 @@ html {
   left: 0;
   margin: auto;
   display: flex;
-  width: 300px;
+  width: 20%;
   background-color: var(--menu-color);
 }
 
@@ -96,14 +96,13 @@ html {
 }
 
 .links-wrapper a {
-  padding: 16px;
+  padding: 5%;
   display: flex;
   align-items: center;
   color: #f7f7f7;
   text-transform: uppercase;
   letter-spacing: 2px;
   font-weight: 500;
-  width: 280px;
   text-decoration: none;
 }
 
@@ -111,8 +110,7 @@ html {
   background-color: var(--menu-color-hover);
 }
 
-.links-wrapper a label,
-small {
+.links-wrapper a label, small {
   margin-left: 10px;
 }
 
@@ -144,8 +142,7 @@ small {
   top: 0;
 }
 .search-container form {
-  margin-right: 200px;
-
+  margin-right: 15%;
   background: rgba(0, 0, 0, 0.1);
   border-radius: 8px;
   padding: 0.2rem;
@@ -154,16 +151,15 @@ small {
   width: 48px;
 }
 .search-container img:first-child {
-  margin-left: 330px;
+  margin-left: 20vw;
 }
 .search-container img:last-child {
-  margin-right: 20px;
+  margin-right: 2vw;
 }
 .search-container form input {
   background: none;
   font-size: 18px;
   color: #333;
-  width: 100px;
 }
 .search-container form button {
   background: none;
@@ -205,4 +201,18 @@ small {
 
 .search-container button:focus {
   outline: none;
+}
+
+.font
+{
+    font-size: 1vw;
+    white-space: nowrap;    
+    text-transform: uppercase;
+}
+
+.vfont
+{
+    font-size: 15vh;
+    white-space: nowrap;    
+    text-transform: uppercase;
 }

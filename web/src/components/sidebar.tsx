@@ -44,29 +44,29 @@ const SideBar = () => {
             <Link to="/profile">
               <img src={user?.thumbnail} alt="olar" className="img-menu" />
               <div className="profile-link">
-                <small>{user?.name}</small>
-                <small>Ver Perfil</small>
+                <small className="font">{user?.name}</small>
+                <small className="font">Ver Perfil</small>
               </div>
             </Link>
             <Link to="/home">
               <FaHome size={20} />
-              <label>Navegar</label>
+              <label className="font">Navegar</label>
             </Link>
             <Link to="/favorites">
               <FaRegStar size={20} />
-              <label>Favoritos</label>
+              <label className="font">Favoritos</label>
             </Link>
             <Link to="/orders">
               <FaShoppingCart size={20} />
-              <label>Pedidos</label>
+              <label className="font">Pedidos</label>
             </Link>
             <Link to="/notifications">
               <FaBell size={20} />
-              <label>Notificações</label>
+              <label className="font">Notificações</label>
             </Link>
             <Link to="/" onClick={handleLogout}>
               <FaDoorOpen size={20} />
-              <label>Sair</label>
+              <label className="font">Sair</label>
             </Link>
           </div>
         </div>
