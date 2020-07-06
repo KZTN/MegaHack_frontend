@@ -1,5 +1,5 @@
 <p align="center">
-    <a href=><img alt="Halt" title="#app" src=".github/logo.png" width="250px" /><a/>
+    <a href=><img alt="Origin" title="#app" src=".github/logo.png" width="250px" /><a/>
 </p>
     <h1 align="center">Origin</h1>
 
