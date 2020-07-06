@@ -17,13 +17,13 @@ git
 Clonando o projeto:
 
 ```
-git clone https://github.com/KZTN/MegaHack_backend.git
+git clone https://github.com/KZTN/MegaHack_frontend.git
 ```
 
 Navegando até a pasta do projeto:
 
 ```
-cd MegaHack_backend
+cd MegaHack_frontend
 ```
 
 Baixando as dependências do projeto:
