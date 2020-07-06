@@ -68,7 +68,7 @@ const StabPost = () => {
               if (localStorage.getItem("id") === post.establishment._id) {
                 return (< GridListTile key={post._id} >
                   <Link id={post._id} to={`/food/${post._id}`}>
-                    <img src={post.thumbnail} alt={post.title} className="img-container" />
+                    <img src={post.thumbnail} alt={post.title} className="img-container" style={{width: '100vh'}}/>
                   </Link>
                   <GridListTileBar
                     title={<strong>{post.establishment.name}</strong>}
