@@ -1,3 +1,29 @@
+<p align="center">
+    <a href=><img alt="Halt" title="#app" src=".github/logo.png" width="250px" /><a/>
+</p>
+    <h1 align="center">Origin</h1>
+
+<h4 align="center">
+Entcontre os melhores preços de comidas perto de você</h4>
+<p align="center">
+  <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/KZTN/MegaHack_frontend.svg">
+
+  <img alt="Repository size" src="https://img.shields.io/github/repo-size/KZTN/MegaHack_frontend.svg">
+  
+  <a href="https://github.com/KZTN/MegaHack_frontend/commits/master">
+    <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/KZTN/MegaHack_frontend.svg">
+  </a>
+
+  <a href="https://github.com/KZTN/MegaHack_frontend/issues">
+    <img alt="Repository issues" src="https://img.shields.io/github/issues/KZTN/MegaHack_frontend.svg">
+  </a>
+
+  <img alt="License" src="https://img.shields.io/badge/license-MIT-brightgreen">
+</p>
+<p align="center">
+  <img alt="Origin" src=".github/Origin_showcase.png" width="100%">
+</p>
+
 ## ⚠️ Atenção
 
  Este é um projeto com a iniciativa do hackathon da Shawee MegaHack 3.0. Todo o protótipo está funcional e pronto para uso.
