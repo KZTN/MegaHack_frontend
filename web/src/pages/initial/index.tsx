@@ -4,8 +4,6 @@ import { Theme, makeStyles, createStyles } from '@material-ui/core/styles';
 import ButtonBase from '@material-ui/core/ButtonBase';
 import Typography from '@material-ui/core/Typography';
 
-import './styles.css'
-
 const images = [
   {
     url: require('../../assets/client.jpg'),
@@ -29,16 +27,12 @@ const useStyles = makeStyles((theme: Theme) =>
     root: {
       display: 'flex',
       flexWrap: 'wrap',
-      minWidth: 300,
       width: '100%',
+      height: '100%'
     },
     image: {
       position: 'relative',
-      height: 650,
-      [theme.breakpoints.down('xs')]: {
-        width: '100% !important', // Overrides inline-style
-        height: 100,
-      },
+      height: '100vh',
       '&:hover, &$focusVisible': {
         zIndex: 1,
         '& $imageBackdrop': {
