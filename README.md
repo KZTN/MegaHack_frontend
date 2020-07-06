@@ -1,4 +1,10 @@
-# MegaHack_frontend
+## ⚠️ Atenção
+
+ Este é um projeto com a iniciativa do hackathon da Shawee MegaHack 3.0. Todo o protótipo está funcional e pronto para uso.
+
+## 💻 Projeto
+
+O Origin é uma plataforma que une o planejamento de negócio voltado para apoio do empreendedo com suas vendas e uma relação mais próxima com seu cliente.
 
 ## Começando...
 Essas instruções fornecerão uma cópia do projeto em execução na sua máquina local para fins de desenvolvimento e teste.
@@ -11,7 +17,6 @@ node v12.x
 yarn 1.22.4
 git
 ```
-> Para uma melhor experiência no ambiente de testes com o servidor API REST, recomenda-se o uso do [insomnia](https://insomnia.rest/)
 
 ### Instalando o projeto 🚀
 Clonando o projeto:
